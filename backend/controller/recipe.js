@@ -1,16 +1,16 @@
 const getRecipes=(req,res)=>{
     res.json({message:"hello"})
 }
-const getRecipes=(req,res)=>{
+const getRecipe=(req,res)=>{
     res.json({message:"hello"})
 }
-const getRecipes=(req,res)=>{
+const addRecipe=(req,res)=>{
     res.json({message:"hello"})
 }
-const getRecipes=(req,res)=>{
+const editRecipe=(req,res)=>{
     res.json({message:"hello"})
 }
-const getRecipes=(req,res)=>{
+const deleteRecipe=(req,res)=>{
     res.json({message:"hello"})
 }
-module.exports={getRecipes}
+module.exports={getRecipes,getRecipe,addRecipe,editRecipe,deleteRecipe}
