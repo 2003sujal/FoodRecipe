@@ -2,7 +2,7 @@ const getRecipes=(req,res)=>{
     res.json({message:"hello"})
 }
 const getRecipe=(req,res)=>{
-    res.json({message:"hello"})
+    res.json({message:"hello1"})
 }
 const addRecipe=(req,res)=>{
     res.json({message:"hello"})

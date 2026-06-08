@@ -1,30 +1,12 @@
 const mongoose = require("mongoose");
+const dns = require("dns");
+
+// Override default DNS resolution to Google and Cloudflare DNS to bypass local SRV lookup issues
+dns.setServers(["8.8.8.8", "1.1.1.1"]);
 
 const connectDb = async () => {
-    const primaryConnectionString = process.env.CONNECTION_STRING || process.env.MONGO_URI;
-    const fallbackConnectionString = "mongodb://127.0.0.1:27017/FoodRecipe";
-
-    try {
-        await mongoose.connect(primaryConnectionString || fallbackConnectionString);
-        console.log("Connected to MongoDB");
-        return true;
-    } catch (err) {
-        if (primaryConnectionString && primaryConnectionString !== fallbackConnectionString) {
-            console.warn("Primary MongoDB connection failed, trying local MongoDB...");
-
-            try {
-                await mongoose.connect(fallbackConnectionString);
-                console.log("Connected to local MongoDB");
-                return true;
-            } catch (fallbackErr) {
-                console.error("Local MongoDB connection failed:", fallbackErr.message);
-                return false;
-            }
-        }
-
-        console.error("Database connection failed:", err.message);
-        return false;
-    }
-};
+    await mongoose.connect(process.env.CONNECTION_STRING)
+    .then (()=>console.log("connected"))
+}
 
 module.exports = connectDb;
