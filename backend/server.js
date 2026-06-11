@@ -10,7 +10,7 @@ connectDb()
 app.use(cors({ origin: "http://localhost:5173" }))
 app.use(express.json())
 app.use("/recipe",require("./routes/recipe"))
-
+app.use("/user",require("./routes/user"))
 app.listen(PORT,(err)=>{
     console.log(`app is listening on port ${PORT}`)
 })
