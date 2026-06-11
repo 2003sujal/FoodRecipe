@@ -4,19 +4,31 @@ import axios from 'axios'
 import {createBrowserRouter,RouterProvider} from "react-router-dom"
 import Home from './pages/Home'
 import MainNavigation from './components/MainNavigation'
+import ErrorPage from './pages/ErrorPage';
 
-const getAllRecipes=async()=>{
-  let allRecipes=[]
-  await axios.get('http://localhost:5000/recipe').then(res=>{
-    allRecipes=res.data
-  })
-  return allRecipes
-}
-const router=createBrowserRouter([
-  {path:"/",element:<MainNavigation/>,children:[
-    {path:"/",element:<Home/>,loader:getAllRecipes}
-  ]}
-])
+const getAllRecipes = async () => {
+  try {
+    const response = await axios.get('http://localhost:5000/recipe');
+    return response.data;
+  } catch (error) {
+    console.error('Failed to fetch recipes:', error);
+    // Propagate error to React Router error handling
+    throw error;
+  }
+};
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainNavigation/>,
+    errorElement: <ErrorPage/>,
+    children: [
+      { path: "/", element: <Home/>, loader: getAllRecipes },
+      { path: "/myRecipe", element: <Home/> },
+      { path: "/favRecipe", element: <Home/> }
+    ]
+  }
+]);
 
 export default function App() {
   return (

@@ -7,7 +7,7 @@ const cors=require("cors")
 const PORT=process.env.PORT || 3000
 connectDb()
 
-app.use(cors({ origin: "http://localhost:5173" }))
+app.use(cors({ origin: ["http://localhost:5173", "http://localhost:5174"] }))
 app.use(express.json())
 app.use("/recipe",require("./routes/recipe"))
 app.use("/user",require("./routes/user"))
