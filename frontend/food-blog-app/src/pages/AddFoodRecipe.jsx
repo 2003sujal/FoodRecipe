@@ -48,5 +48,5 @@ export default function AddFoodRecipe() {
                 </form>
             </div>
         </>
-    )
+    )  
 }
