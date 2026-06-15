@@ -49,4 +49,4 @@ const editRecipe=async(req,res)=>{
 const deleteRecipe=(req,res)=>{
     res.json({message:"hello"})
 }
-module.exports={getRecipes,getRecipe,addRecipe,editRecipe,deleteRecipe,upload}
+module.exports={getRecipes,getRecipe,addRecipe,editRecipe,deleteRecipe,upload} 
