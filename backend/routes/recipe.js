@@ -3,7 +3,7 @@ const { getRecipes,getRecipe,addRecipe,editRecipe,deleteRecipe,upload } = requir
 const router=express.Router()
  router.get("/",getRecipes)//get all recipe 
  router.get("/:id",getRecipe)//get all recipe by id 
- router.post("/",addRecipe)
+ router.post("/", upload.single('file'), addRecipe)
  router.put("/:id",editRecipe)//editRecipe
  router.delete("/:id",deleteRecipe)
 

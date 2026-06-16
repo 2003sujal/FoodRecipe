@@ -7,12 +7,20 @@ export default function AddFoodRecipe() {
     const navigate = useNavigate()
     const onHandleChange = (e) => {
         let val = (e.target.name === "ingredients") ? e.target.value.split(",") : (e.target.name === "file") ? e.target.files[0] : e.target.value
+        if(e.target.name === "file") console.log(val)
         setRecipeData(pre => ({ ...pre, [e.target.name]: val }))
     }
     const onHandleSubmit = async (e) => {
         e.preventDefault()
-        console.log(recipeData)
-        await axios.post("http://localhost:5000/recipe", recipeData,{
+        
+        console.log(recipeData.file) // This will log the file object like in the tutorial
+
+        const formData = new FormData();
+        for (let key in recipeData) {
+            formData.append(key, recipeData[key]);
+        }
+
+        await axios.post("http://localhost:5000/recipe", formData, {
             headers:{
                 'Content-Type':'multipart/form-data',
                 'authorization':'bearer '+localStorage.getItem("token")
