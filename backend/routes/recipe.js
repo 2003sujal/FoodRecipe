@@ -4,7 +4,7 @@ const verifyToken=require("../middleware/auth")
 const router=express.Router()
  router.get("/",getRecipes)//get all recipe 
  router.get("/:id",getRecipe)//get all recipe by id 
- router.post("/", upload.single('file'), addRecipe)
+ router.post("/", verifyToken, upload.single('file'), addRecipe)
  router.put("/:id",editRecipe)//editRecipe
  router.delete("/:id",deleteRecipe)
 
