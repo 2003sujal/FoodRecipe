@@ -3,7 +3,8 @@ import { useLoaderData } from 'react-router-dom'
 import foodImg from '../assets/foodRecipe.png'
 import { BsStopwatchFill } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
-
+import { FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 export default function RecipeItems() {
   const allRecipes = useLoaderData()
   console.log(allRecipes)
@@ -20,6 +21,9 @@ export default function RecipeItems() {
                   <div className='icons'>
                     <div className='timer'><BsStopwatchFill />30min</div>
                     <FaHeart />
+                    <FaEdit />
+                    <MdDelete />
+
                   </div>
                 </div>
               </div>
