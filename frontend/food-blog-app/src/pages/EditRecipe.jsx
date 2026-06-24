@@ -29,8 +29,12 @@ export default function EditRecipe() {
     }
     const onHandleSubmit = async (e) => {
         e.preventDefault()
-        console.log(recipeData)
-        await axios.put(`http://localhost:5000/recipe/${id}`, recipeData,{
+        const formData = new FormData();
+        for (let key in recipeData) {
+            formData.append(key, recipeData[key]);
+        }
+
+        await axios.put(`http://localhost:5000/recipe/${id}`, formData,{
             headers:{
                 'Content-Type':'multipart/form-data',
                 'authorization':'bearer '+localStorage.getItem("token")
